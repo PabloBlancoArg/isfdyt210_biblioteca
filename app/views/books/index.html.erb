@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Libros</h1>
 
 <br>
@@ -23,9 +21,9 @@
   <td><%= book.isbn %></td>
   <td><%= book.published_at %></td>
   <% if user_signed_in? %>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', book %></td>
+        <td><%= link_to 'Editar', edit_book_path(book) %></td>
+        <td><%= link_to 'Borrar', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   <% else %>
         <td></td>
         <td></td>
@@ -36,14 +34,9 @@
     </tbody>
   </table>
 
-  <br>
-
-  
-  
-  <%= link_to 'New Book', new_book_path, class:"btn btn-secondary" %>
-  <br>
-  <br>
   <% if current_user %>
+  <%= link_to 'Nuevo libro', new_book_path, class:"btn btn-secondary" %><br>
+    <br>
     <%= current_user.email %>
   <% else %>
   <%  %>

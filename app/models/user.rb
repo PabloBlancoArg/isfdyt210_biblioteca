@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :friends
+         has_many :loans
+         has_many :books, through: :loans
+     
 end

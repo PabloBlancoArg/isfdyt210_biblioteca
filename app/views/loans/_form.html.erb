@@ -11,7 +11,32 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+
+  <div class="form-group">
+    <% usuario = User.all.map { |user| [user.email, user.id] } %>
+    <%= form.select :user_id, options_for_select(usuario), {}, class: "form-control" %>
+    
   </div>
+
+  <div class="field form-group">
+    <%= form.text_field :book_id, class:"form-control", placeholder:"Id de Book" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.date_field :loan_start, class:"form-control", placeholder:"Fecha de Inicio" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.date_field :loan_finish, class:"form-control", placeholder:"Fecha de Finalizacion" %>
+  </div>
+
+  
+  <div class="form-group">
+    <%= form.select :state, options_for_select(["En Curso","Entregado","Cancelado","Reservado"]), {}, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+  <br>
 <% end %>

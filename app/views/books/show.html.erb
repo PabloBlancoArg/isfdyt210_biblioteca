@@ -1,24 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <h1 class="display-5">
+    <%= @book.title %> /
+    <%= @book.author %>
+  </h1>
+  <p class="lead">
+    Publicado en: <%= @book.published_at %> 
+  </p>
+  <br/>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+  <%= link_to 'Editar', edit_book_path(@book), class:"btn btn-secondary" %>
 
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
+<%= link_to 'Borrar', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+   
+<%= link_to 'Volver', books_path, class:"btn btn-dark" %>
 
-<p>
-  <strong>Isbn:</strong>
-  <%= @book.isbn %>
-</p>
-
-<p>
-  <strong>Published at:</strong>
-  <%= @book.published_at %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+</div>

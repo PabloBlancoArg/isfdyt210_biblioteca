@@ -5,6 +5,8 @@ class LoansController < ApplicationController
   # GET /loans.json
   def index
     @loans = Loan.all
+    @books = Book.all
+    @users = User.all
   end
 
   # GET /loans/1
@@ -15,6 +17,8 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @loan = Loan.new
+    @books = Book.all
+    @users = User.all
   end
 
   # GET /loans/1/edit
