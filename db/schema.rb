@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_152628) do
+ActiveRecord::Schema.define(version: 2020_11_16_231540) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -38,6 +38,11 @@ ActiveRecord::Schema.define(version: 2020_11_16_152628) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.date "loan_start"
+    t.date "loan_end"
+    t.string "gave_loan"
+    t.string "received_loan"
     t.index ["book_id"], name: "index_loans_on_book_id"
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
