@@ -22,6 +22,8 @@
   <td><%= book.published_at %></td>
   <% if user_signed_in? %>
         <td><%= link_to 'Mostrar', book %></td>
+  <%end%>
+  <% if can? :manage, @loan %>
         <td><%= link_to 'Editar', edit_book_path(book) %></td>
         <td><%= link_to 'Borrar', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   <% else %>

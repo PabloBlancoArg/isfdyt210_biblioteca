@@ -7,5 +7,12 @@ class User < ApplicationRecord
          has_many :friends
          has_many :loans
          has_many :books, through: :loans
-     
+
+  def admin?
+    self.role == 'admin'
+  end
+
+  def librarian?
+    self.role == 'librarian'
+  end
 end

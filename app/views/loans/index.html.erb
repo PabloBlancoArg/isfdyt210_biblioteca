@@ -18,7 +18,7 @@
 <tbody>
 <% @loans.each do |loan| %>
   <tr>
-    <td><%= link_to loan.id, loan %></td>
+    <td><%= link_to loan.user_id, loan %></td>
     <td><%= user_email(loan) %></td>
     <td><%= link_to book_title(loan), book_path(loan.book_id) %></td>
     <td><%= corrige_fecha(loan.loan_start) %><br><%= loan.gave_loan %></td>

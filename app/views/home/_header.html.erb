@@ -11,45 +11,46 @@
       <li class="nav-item">
         <%= link_to "Contacto", home_about_path, class:"nav-link" %>
       </li>
-      <li class="nav-item">
-      <%= link_to "Libros", books_path, class:"nav-link" %>
-      </li>
-      
-     
 
-      
+      <% if can? :read, :all %>
+        <li class="nav-item">
+        <%= link_to "Libros", books_path, class:"nav-link" %>
+        </li>
+      <%end%>
 
-      <% if user_signed_in? %>
+      <% if can? :manage, @loan %>
         <li class="nav-item">
           <%= link_to "Agregar libro", new_book_path, class:"nav-link" %>
         </li>
+      <%end%>
         
         <li class="nav-item">
         <%= link_to "Prestamos", loans_path, class:"nav-link" %>
         </li>
-        
+
+      <% if can? :manage, @user %>
         <li class="nav-item">
           <%= link_to "Editar Perfil", edit_user_registration_path, class:"nav-link" %>
         </li>
+      <% end %>
 
+      <% if current_user.present? %>
         <li class="nav-item">
         <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link" %>
         </li>
+      <% end %>
 
-      <% else %>
-
+      <% if can? :manage, @loan %>
         <li class="nav-item">
-          <%= link_to "Registrase", new_user_registration_path, class:"nav-link" %>
+          <%= link_to "Registrase", new_user_path, class:"nav-link" %>
         </li>
+      <%end%>
 
+      <% unless current_user.present? %>
         <li class="nav-item">
           <%= link_to "Loguearse", new_user_session_path, class:"nav-link" %>
         </li>
-
-      <% end %>
-
-      
-      
+      <%end%>
     </ul>
   </div>
 </nav>
