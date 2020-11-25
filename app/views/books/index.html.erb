@@ -10,7 +10,13 @@
 <th>Autor</th>
 <th>ISBN</th>
 <th>Publicado en</th>
-<th colspan="3"></th>
+<% if can? :manage, @book %>
+	<th></th>
+	<th></th>
+	<th></th>
+<% else %>
+	<th></th>
+<% end %>
 </tr>
 </thead>
 <tbody>
@@ -26,20 +32,13 @@
   <% if can? :manage, @loan %>
         <td><%= link_to 'Editar', edit_book_path(book) %></td>
         <td><%= link_to 'Borrar', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% else %>
-        <td></td>
-        <td></td>
-        <td></td>
   <% end %>
       </tr>
     <% end %>
     </tbody>
   </table>
 
-  <% if current_user %>
-  <%= link_to 'Nuevo libro', new_book_path, class:"btn btn-secondary" %><br>
+  <% if can? :manage, @book %>
+  	<%= link_to 'Nuevo libro', new_book_path, class:"btn btn-secondary" %><br>
     <br>
-    <%= current_user.email %>
-  <% else %>
-  <%  %>
   <% end %>

@@ -25,6 +25,8 @@ class LoansController < ApplicationController
 
   # GET /loans/1/edit
   def edit
+    @users = User.all
+    @books = Book.with_long_title
   end
 
   # POST /loans
