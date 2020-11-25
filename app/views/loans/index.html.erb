@@ -1,0 +1,40 @@
+<h1>Prestamos</h1>
+
+<br>
+<table class="table table-striped table-bordered table-hover">
+<thead class="thead-dark">
+<tr>
+<th>ID</th>
+<th>Usuario</th>
+<th>Libro</th>
+<th>Fecha de Inicio<br>Entrego Prestamo</th>
+<th>Fecha de Recepcion<br>Recibio Prestamo</th>
+<th>Fecha Limite</th>
+<th>Estado</th>
+<% if can? :manage, @loan %>
+  <th></th>
+  <th></th>
+<% end %>
+</tr>
+</thead>
+<tbody>
+<% @loans.each do |loan| %>
+  <tr>
+    <td><%= link_to loan.id, loan %></td>
+    <td><%= user_email(loan) %></td>
+    <td><%= link_to book_title(loan), book_path(loan.book_id) %></td>
+    <td><%= corrige_fecha(loan.loan_start) %><br><%= loan.gave_loan %></td>
+    <td><%= corrige_fecha(loan.loan_end) %><br> <%= loan.received_loan %></td>
+    <td><%= limit_date(loan.loan_start) %></td>
+    <td><%= loan.status %></td>
+    <% if can? :manage, @loan %>
+      <td><%= link_to 'Editar', edit_loan_path(loan) %></td>
+      <td><%= link_to 'Borrar', loan, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+
+<%= link_to 'Nuevo Prestamo', new_loan_path %>

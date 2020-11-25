@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <h1 class="display-5">
+    <%= @book.title %> /
+    <%= @book.author %>
+  </h1>
+  <p class="lead">
+    Publicado en: <%= @book.published_at %> 
+  </p>
+  <br/>
+  <% if can? :manage, @book %>
+    <%= link_to 'Editar', edit_book_path(@book), class:"btn btn-secondary" %>
+    <%= link_to 'Borrar', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <% end %>
+<%= link_to 'Volver', books_path, class:"btn btn-dark" %>
+
+</div>

@@ -1,0 +1,26 @@
+<div class="jumbotron">
+  <h3 class="display-6">
+    Estado del Prestamo: <%= @loan.status %><br>
+  </h3>
+  <h3 class="display-6">
+  Libro: <%= @loan.book.title %>
+  <br>
+  Usuario: <%= @loan.user.email %><br>
+  </h3>
+  <p class="lead">
+    Entregado: <%= @loan.loan_start %><br>
+    Entregado por: <%= @loan.gave_loan %><br>
+  </p>
+  <p class="lead">
+    Finalizado: <%= @loan.loan_end %><br>
+    Recibido por: <%= @loan.received_loan %><br>
+  </p>
+  <br/>
+
+<%= link_to 'Editar', edit_loan_path(@loan), class:"btn btn-secondary" %>
+
+<%= link_to 'Borrar', @loan, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+   
+<%= link_to 'Volver', loans_path, class:"btn btn-dark" %>
+
+</div>

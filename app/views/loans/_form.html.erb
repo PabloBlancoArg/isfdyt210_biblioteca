@@ -1,0 +1,50 @@
+<%= form_with(model: loan, local: true) do |form| %>
+  <% if loan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
+
+      <ul>
+        <% loan.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <% usuario = @users.map { |user| [user.email, user.id] } %>
+    <%= form.select :user_id, options_for_select(usuario), {}, class: "form-control" %>
+  </div>
+ 
+  <div class="form-group">
+    <% libro = @books.map { |book| [book.title, book.id] } %>
+    <%= form.select :book_id, options_for_select(libro), {}, class: "form-control" %>
+  </div>
+ 
+  <div class="field form-group">
+    <%= form.date_field :loan_start, class:"form-control", placeholder:"Fecha de Inicio" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :gave_loan, class:"form-control", placeholder:"Entrego Prestamo" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.date_field :loan_end, class:"form-control", placeholder:"Fecha de Finalizacion" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :received_loan, class:"form-control", placeholder:"Recibio Prestamo" %>
+  </div>
+
+  
+  <div class="form-group">
+    <%= form.select :status, options_for_select(["En Curso","Entregado","Cancelado","Reservado"]), {}, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+  <br>
+<% end %>
