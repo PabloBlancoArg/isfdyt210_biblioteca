@@ -7,11 +7,10 @@
     Publicado en: <%= @book.published_at %> 
   </p>
   <br/>
-
-  <%= link_to 'Editar', edit_book_path(@book), class:"btn btn-secondary" %>
-
-<%= link_to 'Borrar', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-   
+  <% if can? :manage, @book %>
+    <%= link_to 'Editar', edit_book_path(@book), class:"btn btn-secondary" %>
+    <%= link_to 'Borrar', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <% end %>
 <%= link_to 'Volver', books_path, class:"btn btn-dark" %>
 
 </div>
