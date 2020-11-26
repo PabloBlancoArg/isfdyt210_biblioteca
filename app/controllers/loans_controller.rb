@@ -19,12 +19,13 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @loan = Loan.new
-    @books = Book.all
+    @books = Book.all_available
     @users = User.all
   end
 
   # GET /loans/1/edit
   def edit
+    @books = Book.all
   end
 
   # POST /loans

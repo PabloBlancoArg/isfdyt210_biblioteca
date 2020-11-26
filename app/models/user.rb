@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def librarian?
     self.role == 'librarian'
   end
+
+  def student?
+    self.role == 'student'
+  end
 end

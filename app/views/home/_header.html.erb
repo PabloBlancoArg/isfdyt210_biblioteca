@@ -52,5 +52,10 @@
         </li>
       <%end%>
     </ul>
+  
+  <% if user_signed_in? %>
+    <p style="color:white; font-size: 1em">Email: <%= current_user.email if current_user %>
+    <br>Rol: <%= current_user.role if current_user  %></p>
+  <%end%>
   </div>
 </nav>

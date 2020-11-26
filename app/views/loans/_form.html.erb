@@ -18,7 +18,7 @@
   </div>
  
   <div class="form-group">
-    <% libro = @books.with_long_title.map { |book| [book.title, book.id] } %>
+    <% libro = @books.all_available.map { |book| [book.title, book.id] } %>
     <%= form.select :book_id, options_for_select(libro), {}, class: "form-control" %>
   </div>
  
