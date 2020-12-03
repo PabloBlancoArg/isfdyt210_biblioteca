@@ -5,14 +5,14 @@
   <h3 class="display-6">
   Libro: <%= @loan.book.title %>
   <br>
-  Usuario: <%= @loan.user.email %><br>
+  Retiro Usuario: <%= @loan.user.email %><br>
   </h3>
   <p class="lead">
-    Entregado: <%= @loan.loan_start %><br>
+    Entregado en: <%= @loan.loan_start %><br>
     Entregado por: <%= @loan.gave_loan %><br>
   </p>
   <p class="lead">
-    Finalizado: <%= @loan.loan_end %><br>
+    Finalizado en: <%= @loan.loan_end %><br>
     Recibido por: <%= @loan.received_loan %><br>
   </p>
   <br/>

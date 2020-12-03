@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_many :friends
-         has_many :loans
+         has_many :loans, dependent: :destroy
          has_many :books, through: :loans
 
   def admin?
@@ -14,5 +13,9 @@ class User < ApplicationRecord
 
   def librarian?
     self.role == 'librarian'
+  end
+
+  def student?
+    self.role == 'student'
   end
 end

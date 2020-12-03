@@ -19,14 +19,28 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @loan = Loan.new
-    @books = Book.all
     @users = User.all
+    @books_availables = Book.all.select { |book| book.loans? }
+    @status_student = 'Reservado'
+    @status_librarian = ['Reservado','Entregado']
+    @book_list = @books_availables.map { |book| [book.title, book.id] }
+    if @book_list.empty?
+      redirect_to root_path, notice: 'No hay libros disponibles'
+    else
+      @user_list = @users.map { |user| [user.email, user.id] }
+    end
   end
 
   # GET /loans/1/edit
   def edit
     @users = User.all
-    @books = Book.with_long_title
+    @books = Book.all
+    @status_librarian = ['Reservado','Entregado','Cancelado','Finalizado']
+    @user_list = @users.map { |user| [user.email, user.id] }
+    @books_availables = Book.all.select { |book| book.loans? }
+    @book_list = @books_availables.map { |book| [book.title, book.id] }
+    @book_loan = Loan.find(params[:id])
+    @edit_list = @book_list.unshift([@book_loan.book.title, @book_loan.book_id])
   end
 
   # POST /loans
