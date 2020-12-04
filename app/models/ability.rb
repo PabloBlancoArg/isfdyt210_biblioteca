@@ -9,13 +9,13 @@ class Ability
       cannot [:edit, :destroy], Book
       if user.admin?  # additional permissions for administrators
         can :manage, :all
-        if user.librarian?
-          can :manage, Loan
-          can :manage, User
-          if user.student?
-            cannot [:edit, :destroy], Loan
-          end
-        end
+      end
+      if user.librarian?
+        can :manage, Loan
+        can :manage, User
+      end
+      if user.student?
+        cannot [:edit, :destroy], Loan
       end
     end
   end

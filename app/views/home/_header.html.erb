@@ -40,11 +40,15 @@
         </li>
       <% end %>
 
-      <% if can? :manage, @loan %>
+      <% if can? :manage, @user %>
         <li class="nav-item">
           <%= link_to "Registrar Usuario", new_user_path, class:"nav-link" %>
         </li>
       <%end%>
+
+        <li class="nav-item">
+          <%= link_to "Usuarios", users_path , class:"nav-link"%>
+        </li>
 
       <% unless current_user.present? %>
         <li class="nav-item">
