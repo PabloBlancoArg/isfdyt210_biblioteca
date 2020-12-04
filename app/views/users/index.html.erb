@@ -1,0 +1,5 @@
+<h3>Listado de Usuarios</h3>
+ <% @users.each do |user| %>
+    Email: <%= user.email%>
+    <p>Rol: <%= user.role%></p>
+<% end %>
