@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :books
   devise_for :users, :path_prefix => 'my'
   resources :users
-  resources :friends
   #get 'home/index'
   get 'home/about'
   #root 'home#index'

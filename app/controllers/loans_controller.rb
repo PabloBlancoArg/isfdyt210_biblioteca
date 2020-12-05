@@ -19,28 +19,34 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @loan = Loan.new
-    @users = User.all
+    @users_availables = User.all.select { |user| user.valid_amount_of_loans? }
     @books_availables = Book.all.select { |book| book.loans? }
     @status_student = 'Reservado'
     @status_librarian = ['Reservado','Entregado']
-    @book_list = @books_availables.map { |book| [book.title, book.id] }
+
+    @book_list = @books_availables.map { |book| [book.full_title_id, book.id] }
     if @book_list.empty?
       redirect_to root_path, notice: 'No hay libros disponibles'
     else
-      @user_list = @users.map { |user| [user.email, user.id] }
+      @user_edit_list = @users_availables.map { |user| [user.email, user.id] }
     end
   end
 
   # GET /loans/1/edit
   def edit
-    @users = User.all
-    @books = Book.all
     @status_librarian = ['Reservado','Entregado','Cancelado','Finalizado']
-    @user_list = @users.map { |user| [user.email, user.id] }
+    @users_availables = User.all.select { |user| user.valid_amount_of_loans? }
+    @user_list = @users_availables.map { |user| [user.email, user.id] }
+    @user_loan = Loan.find(params[:id])
+    if @user_list.include? @user_loan
+      @user_edit_list = @users_availables.map { |user| [user.email, user.id] }
+    else
+      @user_edit_list = @user_list.unshift([@user_loan.user.email, @user_loan.user_id]).uniq
+    end
     @books_availables = Book.all.select { |book| book.loans? }
     @book_list = @books_availables.map { |book| [book.title, book.id] }
     @book_loan = Loan.find(params[:id])
-    @edit_list = @book_list.unshift([@book_loan.book.title, @book_loan.book_id])
+    @book_edit_list = @book_list.unshift([@book_loan.book.title, @book_loan.book_id])
   end
 
   # POST /loans

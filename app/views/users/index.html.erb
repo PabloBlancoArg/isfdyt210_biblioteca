@@ -1,5 +1,22 @@
-<h3>Listado de Usuarios</h3>
- <% @users.each do |user| %>
-    Email: <%= user.email%>
-    <p>Rol: <%= user.role%></p>
-<% end %>
+<h1>Usuarios</h1>
+<br>
+<table class="table table-striped table-bordered table-hover">
+<thead class="thead-dark">
+<tr>
+<th>Email</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+  <% if can? :manage, @user %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= link_to "delete", user, class:'btn btn-secondary', method: :delete, data: { confirm: "Are you sure"} %></td> 
+      </tr>
+    <% end %>
+  <% end %>
+</tbody>
+</table>
+<br>
+ <%= link_to "create new user", new_user_path, class:'btn btn-secondary' %><br>
