@@ -13,7 +13,7 @@
 
   <% if can? :manage, @loan %>
   <div class="form-group">
-    <%= form.select :user_id, options_for_select(@user_list), {}, class: "form-control" %>
+    <%= form.select :user_id, options_for_select(@user_edit_list), {}, class: "form-control" %>
   <% else %>
     <%= form.text_field :user_id, class:"form-control", placeholder:"#{current_user.email}", value:"#{current_user.id}" %>     
   <% end %>

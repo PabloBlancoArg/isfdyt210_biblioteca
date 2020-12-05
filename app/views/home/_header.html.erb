@@ -1,5 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <%= link_to 'Biblioteca Isfdyt 210', root_path, class:"navbar-brand" %>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0d918c;">
+<a class="navbar-brand" href="/">
+  <%= image_tag( root_url + "i210.png", size: "60x60", :alt => root_path ) -%>
+  <%= link_to 'Biblioteca - ISFDyT Nº 210'.html_safe, root_path, class:"navbar-brand" %>
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,25 +10,26 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       
+    <% if can? :read, :all %>
       <li class="nav-item">
         <%= link_to "Contacto", home_about_path, class:"nav-link" %>
       </li>
 
-      <% if can? :read, :all %>
         <li class="nav-item">
         <%= link_to "Libros", books_path, class:"nav-link" %>
         </li>
-      <%end%>
+    <%end%>
 
-      <% if can? :manage, @loan %>
+      <% if can? :create, @loan %>
         <li class="nav-item">
           <%= link_to "Agregar libro", new_book_path, class:"nav-link" %>
         </li>
-      <%end%>
-        
+     
         <li class="nav-item">
         <%= link_to "Prestamos", loans_path, class:"nav-link" %>
         </li>
+      <%end%>
+        
 
       <% if can? :manage, @user %>
         <li class="nav-item">
@@ -44,11 +47,12 @@
         <li class="nav-item">
           <%= link_to "Registrar Usuario", new_user_path, class:"nav-link" %>
         </li>
-      <%end%>
 
         <li class="nav-item">
           <%= link_to "Usuarios", users_path , class:"nav-link"%>
         </li>
+      <%end%>
+
 
       <% unless current_user.present? %>
         <li class="nav-item">

@@ -4,9 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_many :loans, dependent: :destroy
-         has_many :books, through: :loans
+  has_many :loans, dependent: :destroy
+  has_many :books, through: :loans 
 
+  validates_length_of :loans, maximum: 2, :on => :create
+  validates_length_of :loans, maximum: 3, :on => :update
+  
   def admin?
     self.role == 'admin'
   end
@@ -18,4 +21,9 @@ class User < ApplicationRecord
   def student?
     self.role == 'student'
   end
+
+  def valid_amount_of_loans?
+    self.loans.count < 3
+  end
+
 end
