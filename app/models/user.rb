@@ -9,7 +9,11 @@ class User < ApplicationRecord
 
   validates_length_of :loans, maximum: 2, :on => :create
   validates_length_of :loans, maximum: 3, :on => :update
-  
+  validates :name, :last_name, :email, presence: true
+
+
+
+
   def admin?
     self.role == 'admin'
   end

@@ -1,9 +1,12 @@
 <h1>Usuarios</h1>
 <br>
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered">
 <thead class="thead-dark">
 <tr>
 <th>Email</th>
+<th>Nombre</th>
+<th>Apellido</th>
+<th>Rol</th>
 <th></th>
 </tr>
 </thead>
@@ -12,6 +15,9 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.role %></td>
         <td><%= link_to "delete", user, class:'btn btn-secondary', method: :delete, data: { confirm: "Are you sure"} %></td> 
       </tr>
     <% end %>
