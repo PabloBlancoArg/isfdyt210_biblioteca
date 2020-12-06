@@ -8,6 +8,6 @@ class Loan < ApplicationRecord
 
     before_validation do
         self.loan_start = Date.today if loan_start.blank?
-    end
+		end
 
 end

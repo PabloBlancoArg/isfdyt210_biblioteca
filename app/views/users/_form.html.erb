@@ -11,10 +11,30 @@
     </div>
   <% end %>
 
+  	<div class="field form-group">
+  		<% f.label :Nombre %><br />
+  		<%= f.text_field :name, autofocus: true, autocomplete: "Nombre", class:"form-control", placeholder:"Nombre" %>
+	</div>
+	
 	<div class="field form-group">
+		<% f.label :email %><br />
+		<%= f.text_field :last_name, autocomplete: "Apellido", class:"form-control", placeholder:"Apellido" %>
+	</div>
+ 
+ 	 <div class="field form-group">
 		<% f.label :email %><br />
 		<%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %>
 	</div>
+	<div class="field form-group">
+    <% if current_user.admin? %>
+      <% f.label :role %><br />
+	  <%= f.select :role, options_for_select(['bibliotecario', 'estudiante']), {}, class: "form-control" %>
+	  <% else %>
+      <% f.label :role %><br />
+      <%= f.select :role, options_for_select(['estudiante']), {}, class: "form-control" %>
+    <% end %> 
+  </div>
+
 
 	<div class="field form-group">
 		<% f.label :password %>

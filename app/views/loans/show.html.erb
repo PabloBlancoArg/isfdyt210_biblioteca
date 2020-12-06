@@ -17,10 +17,11 @@
   </p>
   <br/>
 
+<% if can? :manage, @loan %>  
 <%= link_to 'Editar', edit_loan_path(@loan), class:"btn btn-secondary" %>
 
 <%= link_to 'Borrar', @loan, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-   
+<% end %>   
 <%= link_to 'Volver', loans_path, class:"btn btn-dark" %>
 
 </div>

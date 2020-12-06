@@ -11,8 +11,8 @@
     </div>
   <% end %>
 
-  <% if can? :manage, @loan %>
   <div class="form-group">
+  <% if can? :manage, @loan %>
     <%= form.select :user_id, options_for_select(@user_edit_list), {}, class: "form-control" %>
   <% else %>
     <%= form.text_field :user_id, class:"form-control", placeholder:"#{current_user.email}", value:"#{current_user.id}" %>     
@@ -42,11 +42,11 @@
   
   <div class="form-group">
 
-  <% if can? :manage, @loan %>
-    <%= form.select :status, options_for_select(@status_librarian), {}, class: "form-control" %>
-  <% else %>
-    <%= form.select :status, options_for_select([@status_student]), {}, class: "form-control" %>
-  <% end %>
+    <% if can? :manage, @loan %>
+      <%= form.select :status, options_for_select(@status_librarian), {}, class: "form-control" %>
+    <% else %>
+      <%= form.select :status, options_for_select([@status_student]), {}, class: "form-control" %>
+    <% end %>
 
   </div>
 
@@ -54,4 +54,5 @@
     <%= form.submit class:'btn btn-secondary' %>
   </div>
   <br>
+
 <% end %>
