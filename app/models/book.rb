@@ -1,9 +1,14 @@
 class Book < ApplicationRecord
-    has_many :loans
+    has_many :loans, dependent: :destroy
     has_many :users, through: :loans
 
-    scope :with_long_title, -> { where("LENGTH(title) > 5") }
+    validates :title, :author, :published_at, :editorial, presence: true
+    
+    def loans?
+        self.loans.empty?
+    end 
 
-    #scope :available, -> { joins(:loan).where('loans.status') != "En Curso") }
-
+    def full_title_id
+        "#{self.try(:title)} - (#{self.try(:id)})"
+    end
 end

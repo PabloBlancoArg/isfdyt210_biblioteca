@@ -1,4 +1,4 @@
-<h1>Libros</h1>
+<h1>Indice de Libros</h1>
 
 <br>
 
@@ -9,23 +9,26 @@
 <th>Titulo</th>
 <th>Autor</th>
 <th>ISBN</th>
+<th>Editorial</th>
 <th>Publicado en</th>
 <% if can? :manage, @book %>
 	<th></th>
 	<th></th>
-	<th></th>
+  <th></th>
 <% else %>
-	<th></th>
+  <th></th>
 <% end %>
+
 </tr>
 </thead>
 <tbody>
 <% @books.each do |book| %>
   <tr>
-  <td><%= book.title %></td>
+  <td><%= book.full_title_id %></td>
   <td><%= book.author %></td>
   <td><%= book.isbn %></td>
-  <td><%= book.published_at %></td>
+  <td><%= book.editorial %></td>
+  <td><%= corrige_fecha(book.published_at) %></td>
   <% if user_signed_in? %>
         <td><%= link_to 'Mostrar', book %></td>
   <%end%>
@@ -39,6 +42,6 @@
   </table>
 
   <% if can? :manage, @book %>
-  	<%= link_to 'Nuevo libro', new_book_path, class:"btn btn-secondary" %><br>
+  	<%= link_to 'Nuevo libro', new_book_path, class:"btn btn-success" %><br>
     <br>
   <% end %>

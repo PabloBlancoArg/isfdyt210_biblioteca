@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!
+
 	def index
-		@users = User.all
+		@users = User.where.not(role: 'admin')
 		@books = Book.all
 		@loans = Loan.all
 	end
@@ -25,7 +27,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@user.destroy
 		respond_to do |format|
-			format.html { redirect_to user_url, notice: 'User was successfully destroyed.' }
+			format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
 			format.json { head :no_content }
 		end
 	end
@@ -40,7 +42,9 @@ class UsersController < ApplicationController
 		update_attributes(params) 
 	end
 
+	
+
 	def user_params
-		params.require(:user).permit(:email, :password, :password_confirmation)
+		params.require(:user).permit(:email, :name, :last_name, :role, :password, :password_confirmation)
 	end
 end

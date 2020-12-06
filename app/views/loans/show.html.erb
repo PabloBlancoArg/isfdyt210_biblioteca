@@ -5,22 +5,23 @@
   <h3 class="display-6">
   Libro: <%= @loan.book.title %>
   <br>
-  Usuario: <%= @loan.user.email %><br>
+  Retiro Usuario: <%= @loan.user.email %><br>
   </h3>
   <p class="lead">
-    Entregado: <%= @loan.loan_start %><br>
+    Entregado en: <%= @loan.loan_start %><br>
     Entregado por: <%= @loan.gave_loan %><br>
   </p>
   <p class="lead">
-    Finalizado: <%= @loan.loan_end %><br>
+    Finalizado en: <%= @loan.loan_end %><br>
     Recibido por: <%= @loan.received_loan %><br>
   </p>
   <br/>
 
+<% if can? :manage, @loan %>  
 <%= link_to 'Editar', edit_loan_path(@loan), class:"btn btn-secondary" %>
 
 <%= link_to 'Borrar', @loan, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-   
+<% end %>   
 <%= link_to 'Volver', loans_path, class:"btn btn-dark" %>
 
 </div>
