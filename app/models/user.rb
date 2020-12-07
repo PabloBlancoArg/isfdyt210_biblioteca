@@ -12,14 +12,12 @@ class User < ApplicationRecord
   validates :name, :last_name, :email, presence: true
 
 
-
-
   def admin?
     self.role == 'admin'
   end
 
-  def librarian?
-    self.role == 'librarian'
+  def bibliotecario?
+    self.role == 'bibliotecario'
   end
 
   def student?
@@ -27,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def valid_amount_of_loans?
-    self.loans.count < 3
+    self.loans.where.not(status: "Finalizado").count
   end
 
 end

@@ -8,13 +8,10 @@ class Ability
       can :edit, User
       can :create, Loan , user_id: user.id
       cannot [:edit, :destroy], Book
-      if user.admin?  # additional permissions for administrators
+      if user.admin? || user.bibliotecario?  # additional permissions for administrators
         can :manage, :all
       end
-      if user.librarian?
-        can :manage, Loan
-        can :manage, User
-      end
+
       if user.student?
         cannot [:edit, :destroy], Loan
       end
