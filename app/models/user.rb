@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def valid_amount_of_loans?
-    self.loans.where.not(status: "Finalizado").count
+    self.loans.where.not(status: "Finalizado").count < 3
   end
 
 end
