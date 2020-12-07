@@ -10,7 +10,7 @@ Book.create(title:"El pepe de los anillos 2", author:"Pepe Pepin", isbn:'1232141
 Book.create(title:"El carlos de los anillos 3", author:"Pepe Pepin",isbn:'1321412435', published_at:"12/10/2020", editorial:"Clarin")
 Book.create(title:"El Libro de los plagios", author:"Nik", isbn:'123214125', published_at:"12/10/2020", editorial:"Clarin")
 Book.create(title:"Rambo 23", author:"Ghandi",isbn:'1321412435', published_at:"12/10/2020", editorial:"Ole")
-User.create(email:"blancopablo1991@gmail.com",name:"Pablo", last_name:"Blanco", password:"123456", password_confirmation:"123456", role:"admin")
+User.create(email:"gonzalo@gmail.com",name:"Gonzalo", last_name:"Gonzalez", password:"123456", password_confirmation:"123456", role:"admin")
 User.create(email:"librarian@librarian", name:"vivlio", last_name:"tecario", password:"123456", password_confirmation:"123456", role:"bibliotecario")
 User.create(email:"estudiante1@estudiante", name:"Pepe", last_name:"Garolfo", password:"123456", password_confirmation:"123456", role:"estudiante")
 User.create(email:"estudiante2@estudiante", name:"Juan", last_name:"Garolfo", password:"123456", password_confirmation:"123456", role:"estudiante")

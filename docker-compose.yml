@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: postgres:11.4-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGPASSWORD=postgres
+    ports:
+      - "5433:5432"
+    stop_signal: SIGTERM
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  web:
+    build: .
+    #command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && rails db:migrate RAILS_ENV=development && bundle exec rails s -b 0.0.0.0"
+    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0"
+    volumes:
+      - bundle:/bundle
+      - cache:/cache
+      - .:/app
+      - .:/storage
+    ports:
+      - '3000:3000'
+    environment:
+      - SPROCKETS_CACHE=/cache
+      # DATABASE_URL: postgres://postgres@db
+    # Uso del byebug en development
+    tty: true
+    stdin_open: true
+    #env_file: .env
+    depends_on:
+      - db
+
+volumes:
+  bundle:
+  cache:
+  postgres-data:
