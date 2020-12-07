@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def student?
-    self.role == 'student'
+    self.role == 'estudiante'
   end
 
   def valid_amount_of_loans?
